@@ -1,0 +1,6 @@
+========================================
+       AUDITORÍA DE DESCUENTOS
+========================================
+El cliente Evelyn Sanchez (ID: 17), de la ciudad de San Diego,
+compró un total de 16 productos regulares válidos.
+========================================

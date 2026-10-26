@@ -53,3 +53,25 @@ if lista_resultados:
         print(f"Error al obtener el usuario: {response_usuario.status_code}")
 else:
     print("No hay resultados para analizar.")
+
+if lista_resultados and response_usuario.status_code == 200:
+    nombre = f"{usuario['firstName']} {usuario['lastName']}"
+    ciudad = usuario["address"]["city"]
+
+    reporte = (
+        "========================================\n"
+        "       AUDITORÍA DE DESCUENTOS\n"
+        "========================================\n"
+        f"El cliente {nombre} (ID: {ganador['user_id']}), "
+        f"de la ciudad de {ciudad},\n"
+        f"compró un total de {ganador['cantidad_validos']} "
+        "productos regulares válidos.\n"
+        "========================================"
+    )
+
+    print("\n" + reporte)
+
+    with open("reporte_auditoria.txt", "w", encoding="utf-8") as archivo:
+        archivo.write(reporte + "\n")
+
+    print("\nReporte guardado en reporte_auditoria.txt")
