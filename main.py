@@ -35,3 +35,21 @@ lista_resultados = calcular_productos_validos(carts)
 print("--- RESULTADOS DE PRODUCTOS VÁLIDOS POR CARRITO ---")
 for r in lista_resultados:
     print(f"User ID: {r['user_id']} | Cantidad de productos válidos: {r['cantidad_validos']}")
+
+
+if lista_resultados:
+    ganador = max(lista_resultados, key=lambda r: r["cantidad_validos"])
+
+    url_usuario = f"https://dummyjson.com/users/{ganador['user_id']}"
+    response_usuario = requests.get(url_usuario)
+
+    if response_usuario.status_code == 200:
+        usuario = response_usuario.json()
+
+        print("\n--- CLIENTE CON MÁS PRODUCTOS VÁLIDOS ---")
+        print(f"User ID: {ganador['user_id']}")
+        print(f"Cantidad de productos válidos: {ganador['cantidad_validos']}")
+    else:
+        print(f"Error al obtener el usuario: {response_usuario.status_code}")
+else:
+    print("No hay resultados para analizar.")
